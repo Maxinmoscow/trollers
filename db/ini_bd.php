@@ -1,7 +1,6 @@
 <?php
 /* подключаем данные относительно корня каталога */
 $DB_SERVER_DATA = $_SERVER['DOCUMENT_ROOT'].'/data/db_server.php';
-
 include $DB_SERVER_DATA;
 
 
@@ -20,4 +19,5 @@ if($mysqli->query($sql) === true){
 }
 // закрываем соединение
 $mysqli->close();
+
 ?>
