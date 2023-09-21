@@ -38,21 +38,8 @@ $table1 = array(
     'email' => 'VARCHAR(70) NOT NULL UNIQUE');
    
 
-    function creat_table_string($table)
-{
-  
-    while ($tab = current($table)) {
-            if ( key($table) == array_key_first($table)) $out_string = $tab."( ";
-            else {
-                $out_string = $out_string.key($table)." ".$tab;
-                if (key($table) != array_key_last($table)) $out_string = $out_string.", ";
-                else $out_string = $out_string." )";
-            }
-        next($table);
-    }
 
-    return $out_string;
-}  
+
 echo creat_table_string($table1);
 ?>
 

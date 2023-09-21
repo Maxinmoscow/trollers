@@ -1,27 +1,22 @@
 <?php
-/* подключаем данные относительно корня каталога */
-$DB_SERVER_DATA = $_SERVER['DOCUMENT_ROOT'].'/data/db_server.php';
-$DB_TABLES_DATA = $_SERVER['DOCUMENT_ROOT'].'/data/db_tables.php';
+include_once "define.php";
 
-include $DB_SERVER_DATA;
-include $DB_TABLES_DATA;
+include_once DB_SERVER_DATA;
+include_once DB_TABLES_DATA;
 
 /* Попытка подключения к серверу MySQL. */
 $mysqli = new mysqli($DB_HOST, $DB_USER, $DB_PASSWORD, $DB_NAME);
- 
 // Проверка подключения
-if($mysqli === false){
-    die("ERROR: Ошибка подключения. " . $mysqli->connect_error);
-}
+if($mysqli === false) die("ERROR: Ошибка подключения. " . $mysqli->connect_error);
  
-// Попытка выполнить запрос на создание таблицы
-$sql = "CREATE TABLE ".$TABLE_1;
-if($mysqli->query($sql) === true){
-    echo "Таблица успешно создана.";
-} else{
-    echo "ERROR: Не удалось выполнить $sql. " . $mysqli->error;
-}
- 
+// Попытка выполнить запрос на создание таблицы 1
+if($mysqli->query(creat_table_string($table_1)) === true) echo " Таблица успешно создана.";
+else  echo " ERROR: Не удалось выполнить. " . $mysqli->error;
+
+// Попытка выполнить запрос на создание таблицы 2
+if($mysqli->query(creat_table_string($table_2)) === true) echo " Таблица успешно создана.";
+else  echo " ERROR: Не удалось выполнить. " . $mysqli->error;
+
 // Закрыть соединение
 $mysqli->close();
 ?>
