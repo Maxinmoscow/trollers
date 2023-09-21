@@ -30,23 +30,30 @@ $TABLE_2 ="persons(
     email VARCHAR(70) NOT NULL UNIQUE
 ) ";
 */
-$table_1 = array(
+$table1 = array(
     'table_name' => 'account',
     'id' => 'INT NOT NULL PRIMARY KEY AUTO_INCREMENT',
     'first_name' => 'VARCHAR(30) NOT NULL',
     'last_name' => 'VARCHAR(30) NOT NULL',
     'email' => 'VARCHAR(70) NOT NULL UNIQUE');
    
-  $table = $table_1;
+
+    function creat_table_string($table)
+{
+  
     while ($tab = current($table)) {
-            if ( key($table) == array_key_first($table)) echo $tab."( ";
+            if ( key($table) == array_key_first($table)) $out_string = $tab."( ";
             else {
-                echo key($table)." ".$tab;
-                if (key($table) != array_key_last($table)) echo ", ";
-                else echo " )";
+                $out_string = $out_string.key($table)." ".$tab;
+                if (key($table) != array_key_last($table)) $out_string = $out_string.", ";
+                else $out_string = $out_string." )";
             }
         next($table);
     }
+
+    return $out_string;
+}  
+echo creat_table_string($table1);
 ?>
 
 
